@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: reddit_clone_development
+  username: postgres
+  password: admin123
+  #host: localhost
+  #port: 5432
+
+test:
+  <<: *default
+  database: reddit_clone_test
+  username: postgres
+  password: admin123
+
+production:
+  <<: *default
+  database: reddit_clone_production
+  username: reddit_clone
+  password: <%= ENV["REDDIT_CLONE_DATABASE_PASSWORD"] %>
